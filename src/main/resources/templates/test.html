@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Boot Thymeleaf Web Application</title>
+    <link href="../static/css/my.css"
+          th:href="@{css/my.css}" rel="stylesheet" media="screen"/>
+</head>
+<body>
+<h1>Welcome to Test Boot Thymeleaf</h1>
+<span th:text="${message}">message</span>
+
+<form th:action="@{/addText}" th:object="${textForm}" method="POST">
+    <label for="text">Text:</label>
+    <textarea id="text" cols="50" rows="10" th:field="*{text}"></textarea>
+    <input type="submit" value="Ввод"/>
+</form>
+
+ Введен текст: <span th:text="${text}"></span>
+
+</body>
+</html>
