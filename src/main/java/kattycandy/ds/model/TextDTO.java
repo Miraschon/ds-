@@ -3,7 +3,7 @@ package kattycandy.ds.model;
 /**
  * @author Oleg Z. (cornknight@gmail.com)
  */
-public class Text {
+public class TextDTO {
 	private String text;
 
 	public String getText() {
