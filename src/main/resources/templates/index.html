@@ -32,6 +32,9 @@
         <textarea id="text" placeholder="Paste text here." cols="50" rows="10" th:field="*{text}"></textarea>
         <input type="submit" value="Enter"/>
     </form>
+
+    <input type="button" value="Logout" onclick="{window.location='/logout'}"/>
+
     <div id="stats-container">
         <div class="sentence-count main-stat"><span style='font-size:170%;font-weight:bold'>0</span></div>
         <div class="main-stat-text"><h1>sentences</h1></div>
