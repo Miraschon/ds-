@@ -14,12 +14,6 @@
           th:href="@{/css/my.css}" rel="stylesheet" media="screen"/>
 </head>
 <body>
-<span th:text="${message}">message</span>
-
-
-Введен текст: <span th:text="${text}"></span>
-
-
 <div id="subtitle">
     <p>Track the word usage in your text</p>
 </div>
@@ -36,61 +30,59 @@
     <input type="button" value="Logout" onclick="{window.location='/logout'}"/>
 
     <div id="stats-container">
-        <div class="sentence-count main-stat"><span style='font-size:170%;font-weight:bold'>0</span></div>
+        <div class="sentence-count main-stat"><span style='font-size:170%;font-weight:bold' th:text="${sentences}">0</span></div>
         <div class="main-stat-text"><h1>sentences</h1></div>
         <div id="minor-stats-container">
             <table>
 
                 <tr>
                     <td>
-                        <div class="minor-stat"><span class="avg-words-per-sentence-count">0</span> words per sentence</div>
-                    </td>
-                <tr>
-                    <td>
-                        <div class="minor-stat"><span class="sentence-count">0</span> sentences</div>
-                    </td>
-                <tr>
-                    <td>
-                        <div class="minor-stat"><span class="paragraph-count">0</span> paragraphs</div>
-                    </td>
-                </tr>
-                <td>
-                    <div class="minor-stat"><span class="paragraph-word-count">0</span> words per paragraph</div>
-                </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="minor-stat"><span class="letters-per-sentence">0</span> letters per sentence</div>
+                        <div class="minor-stat"><span class="avg-words-per-sentence-count" th:text="${wordsPerSentence}">0</span> words per sentence</div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div class="minor-stat"><span class="alpha-count">0</span> letters, total</div>
+                        <div class="minor-stat"><span class="paragraph-count" th:text="${paragraphs}">0</span> paragraphs</div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div class="minor-stat"><span class="word-count">0</span> words, total</div>
+                        <div class="minor-stat"><span class="paragraph-word-count" th:text="${wordsPerParagraph}">0</span> words per paragraph</div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div class="minor-stat"><span class="max-words-per-sentence-count">0</span> max sentence length (words)</div>
+                        <div class="minor-stat"><span class="letters-per-sentence" th:text="${lettersPerSentence}">0</span> letters per sentence</div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div class="minor-stat"><span class="min-words-per-sentence-count">0</span> min sentence length (words)</div>
+                        <div class="minor-stat"><span class="alpha-count" th:text="${letters}">0</span> letters, total</div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div class="minor-stat"><span class="question-count">0</span> questions</div>
+                        <div class="minor-stat"><span class="word-count" th:text="${words}">0</span> words, total</div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div class="minor-stat"><span class="unique-word-count">0</span> unique words</div>
+                        <div class="minor-stat"><span class="max-words-per-sentence-count" th:text="${maxSentenceLen}">0</span> max sentence length (words)</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="minor-stat"><span class="min-words-per-sentence-count" th:text="${minSentenceLen}">0</span> min sentence length (words)</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="minor-stat"><span class="question-count" th:text="${questions}">0</span> questions</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="minor-stat"><span class="unique-word-count" th:text="${uniqueWords}">0</span> unique words</div>
                     </td>
                 </tr>
             </table>
