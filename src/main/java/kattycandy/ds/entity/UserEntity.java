@@ -2,6 +2,7 @@ package kattycandy.ds.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -18,9 +19,6 @@ public class UserEntity implements Serializable {
 
     @Column(name = "password", nullable = false)
     private String password;
-
-    @Column(name = "text")
-    private String text;
 
     public Integer getId() {
         return id;
@@ -46,19 +44,21 @@ public class UserEntity implements Serializable {
         this.password = password;
     }
 
-    public String getText() {
-        return text;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        UserEntity that = (UserEntity) o;
+        return Objects.equals(id, that.id) &&
+               Objects.equals(username, that.username) &&
+               Objects.equals(password, that.password);
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String toString() {
-      return "Users{id=" + id + 
-        ", username=" + username + 
-        ", password=" + password + 
-        ", text=" + text + 
-        "}";
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password);
     }
 }

@@ -1,7 +1,9 @@
 package kattycandy.ds.controller;
 
+import kattycandy.ds.entity.TextEntity;
 import kattycandy.ds.entity.UserEntity;
 import kattycandy.ds.model.TextDTO;
+import kattycandy.ds.repository.TextRepository;
 import kattycandy.ds.repository.UsersRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,9 +24,11 @@ import java.util.regex.Pattern;
 public class TextController {
 
 	private final UsersRepository usersRepository;
+	private final TextRepository textRepository;
 
-	public TextController(UsersRepository usersRepository) {
+	public TextController(UsersRepository usersRepository, TextRepository textRepository) {
 		this.usersRepository = usersRepository;
+		this.textRepository = textRepository;
 	}
 
 	@GetMapping("/")
@@ -37,11 +41,23 @@ public class TextController {
 
 		if (userOptional.isPresent()) {
 			UserEntity userEntity = userOptional.get();
-			text.setText(userEntity.getText());
-		}
-		model.addAttribute("message", "Привет.");
-		model.addAttribute("textForm", text);
+			List<TextEntity> textEntities = textRepository.findAllByUserId(userEntity.getId());
 
+			textEntities.stream().max(Comparator.comparing(TextEntity::getCreatedAt)).ifPresent(
+					textEntity -> model.addAttribute("textForm", TextEntity.toDto(textEntity))
+			);
+
+			model.addAttribute("selectForm",new TextDTO());
+			model.addAttribute("textEntities",textEntities);
+		}
+
+		model.addAttribute("message", "Привет.");
+
+		return "index";
+	}
+
+	@PostMapping(value = {"/selectDate"})
+	public String selectDate(Model model, @ModelAttribute("selectForm") TextDTO txt) {
 		return "index";
 	}
 
@@ -55,7 +71,7 @@ public class TextController {
 
 		if (userOptional.isPresent()) {
 			UserEntity userEntity = userOptional.get();
-			userEntity.setText(text);
+			//userEntity.setText(text);
 			usersRepository.save(userEntity);
 		}
 
@@ -122,6 +138,8 @@ public class TextController {
 		model.addAttribute("minSentenceLen", minSentenceLen);
 		model.addAttribute("questions", questionsCount);
 		model.addAttribute("uniqueWords", uniqueWordsCount);
+
+		model.addAttribute("selectForm",new TextDTO());
 		return "index";
 	}
 

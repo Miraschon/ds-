@@ -29,6 +29,19 @@
 
     <input type="button" value="Logout" onclick="{window.location='/logout'}"/>
 
+    <form th:action="@{/selectDate}" th:object="${selectForm}" method="POST">
+        <div class="form-group">
+            <label for="pizza">Choose date:</label>
+            <select class="form-control selectpicker" th:field="*{createdAt}" id="pizza">
+                <option value="">Nothing selected</option>
+                <option th:each="textEntity : ${textEntities}"
+                        th:value="${textEntity.getCreatedAt()}"
+                        th:text="${textEntity.getCreatedAt()}">
+                </option>
+            </select>
+        </div>
+    </form>
+
     <div id="stats-container">
         <div class="sentence-count main-stat"><span style='font-size:170%;font-weight:bold' th:text="${sentences}">0</span></div>
         <div class="main-stat-text"><h1>sentences</h1></div>
