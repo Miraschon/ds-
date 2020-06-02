@@ -1,11 +1,14 @@
 package kattycandy.ds.entity;
 
+import kattycandy.ds.model.DateSelectorDTO;
 import kattycandy.ds.model.TextDTO;
 
 import javax.persistence.*;
 import javax.xml.soap.Text;
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
@@ -64,10 +67,20 @@ public class TextEntity implements Serializable {
 
 	public static TextDTO toDto(TextEntity entity) {
 		TextDTO result = new TextDTO();
-		result.setText(entity.text);
-		result.setCreatedAt(entity.createdAt.toString());
-		result.setUserId(entity.userId);
+		result.setText(entity.getText());
+		result.setCreatedAt(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
+		                                     .withZone(ZoneId.systemDefault())
+		                                     .format(entity.getCreatedAt()));
+		result.setUserId(entity.getUserId());
+		result.setId(entity.getId());
 		return result;
+	}
+
+	public static DateSelectorDTO toDateSelector(TextEntity entity) {
+		return new DateSelectorDTO(entity.getId(),
+		                           DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
+		                                                              .withZone(ZoneId.systemDefault())
+		                                                              .format(entity.getCreatedAt()));
 	}
 
 	@Override
@@ -86,5 +99,20 @@ public class TextEntity implements Serializable {
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, userId, text, createdAt);
+	}
+
+	@Override
+	public String toString() {
+		return "TextEntity{" +
+		       "id=" +
+		       id +
+		       ", userId=" +
+		       userId +
+		       ", text='" +
+		       text +
+		       '\'' +
+		       ", createdAt=" +
+		       createdAt +
+		       '}';
 	}
 }

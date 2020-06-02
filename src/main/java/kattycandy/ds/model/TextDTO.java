@@ -6,10 +6,19 @@ import java.time.Instant;
  * @author Oleg Z. (cornknight@gmail.com)
  */
 public class TextDTO {
+	private int id;
 	private String text;
 
 	private int userId;
 	private String createdAt;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getText() {
 		return text;

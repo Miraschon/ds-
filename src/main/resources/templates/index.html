@@ -21,22 +21,23 @@
 
 <div id="main-column">
 
-    <form th:action="@{/addText}" th:object="${textForm}" method="POST">
+    <form th:action="@{/analyseText}" th:object="${textForm}" method="POST">
         <label for="text">Text:</label>
         <textarea id="text" placeholder="Paste text here." cols="50" rows="10" th:field="*{text}"></textarea>
-        <input type="submit" value="Enter"/>
+        <input type="submit" name="action" value="Analyse"/>
+        <input type="submit" name="action" value="Save"/>
     </form>
 
     <input type="button" value="Logout" onclick="{window.location='/logout'}"/>
 
     <form th:action="@{/selectDate}" th:object="${selectForm}" method="POST">
         <div class="form-group">
-            <label for="pizza">Choose date:</label>
-            <select class="form-control selectpicker" th:field="*{createdAt}" id="pizza">
+            <label for="datesSelector">Choose date:</label>
+            <select th:field="*{textId}" id="datesSelector" onchange="this.form.submit()">
                 <option value="">Nothing selected</option>
-                <option th:each="textEntity : ${textEntities}"
-                        th:value="${textEntity.getCreatedAt()}"
-                        th:text="${textEntity.getCreatedAt()}">
+                <option th:each="selectorDTO : ${dateSelector}"
+                        th:value="${selectorDTO.getTextId()}"
+                        th:text="${selectorDTO.getDate()}">
                 </option>
             </select>
         </div>
