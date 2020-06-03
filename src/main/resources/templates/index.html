@@ -30,13 +30,13 @@
 
     <input type="button" value="Logout" onclick="{window.location='/logout'}"/>
 
-    <form th:action="@{/selectDate}" th:object="${selectForm}" method="POST">
+    <form th:action="@{/selectDate}" method="POST">
         <div class="form-group">
             <label for="datesSelector">Choose date:</label>
-            <select th:field="*{textId}" id="datesSelector" onchange="this.form.submit()">
-                <option value="">Nothing selected</option>
+            <select name="dateSelector" id="datesSelector" onchange="this.form.submit()">
                 <option th:each="selectorDTO : ${dateSelector}"
                         th:value="${selectorDTO.getTextId()}"
+                        th:selected="${selectorDTO.isSelected()}"
                         th:text="${selectorDTO.getDate()}">
                 </option>
             </select>

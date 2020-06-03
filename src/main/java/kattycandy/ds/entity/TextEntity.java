@@ -4,7 +4,6 @@ import kattycandy.ds.model.DateSelectorDTO;
 import kattycandy.ds.model.TextDTO;
 
 import javax.persistence.*;
-import javax.xml.soap.Text;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.ZoneId;
@@ -14,6 +13,7 @@ import java.util.Objects;
 /**
  * @author Oleg Z. (cornknight@gmail.com)
  */
+@SuppressWarnings("unused")
 @Entity
 @Table(name = "text")
 public class TextEntity implements Serializable {
