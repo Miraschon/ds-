@@ -4,6 +4,7 @@ import kattycandy.ds.entity.UserEntity;
 import kattycandy.ds.model.UserDTO;
 import kattycandy.ds.repository.UsersRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 @Controller
 @RequestMapping("/")
@@ -54,8 +56,14 @@ public class LoginController {
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 			response.sendRedirect("/");
 		} else {
-			model.addAttribute("error", "Incorrect login and password");
+			model.addAttribute("error", getBundle().getString("login.incorrect"));
 		}
 		return "login";
+	}
+
+	private ResourceBundle getBundle() {
+		log.info(LocaleContextHolder.getLocale().getLanguage());
+		ResourceBundle bundle = ResourceBundle.getBundle("messages", LocaleContextHolder.getLocale());
+		return bundle;
 	}
 }

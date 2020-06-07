@@ -16,7 +16,6 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
  * @author Oleg Z. (cornknight@gmail.com)
  */
 @Configuration
-@EnableWebMvc
 public class I18nConfiguration implements WebMvcConfigurer {
 
 	@Bean

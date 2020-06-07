@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}" th:lang="${lang}">
 <head>
-    <meta charset="utf-8">
-    <title th:text="#{login}"></title>
-    <link th:href="@{/css/style.css}" rel="stylesheet" media="screen"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>#{login}</title>
+    <link href="/css/style.css" media="screen" rel="stylesheet">
+    <link href="../static/css/style.css"
+          th:href="@{/css/style.css}" rel="stylesheet" media="screen"/>
 </head>
 
 <div class="container">
     <div class="flat-design-form">
-        <select name="language" id="langSelector" onchange="window.location='login?lang='+this.value">
+        <select name="language" id="langSelector" onchange="window.location='/login?lang='+this.value">
             <option value="EN" th:selected="${#locale.language}=='en'">EN</option>
             <option value="RU" th:selected="${#locale.language}=='ru'">RU</option>
         </select>
@@ -19,21 +21,21 @@
                     <ul>
                         <li>
                             <div class="item">
-                                <input data-validate-length-range="6" name="name" placeholder="Username" required="required" type="text" th:field="*{username}">
+                                <input data-validate-length-range="6" name="name" th:placeholder="#{username}" required="required" type="text" th:field="*{username}">
                             </div>
                         </li>
                         <li>
                             <div class="item">
-                                <input data-v]alidate-length-range="6" name="password" placeholder="Password" required='required' type="password" th:field="*{password}">
+                                <input data-v]alidate-length-range="6" name="password" th:placeholder="#{password}"  required='required' type="password" th:field="*{password}">
                             </div>
                         </li>
-                        <li><input class="button-login" type="submit" value="Login"></li>
+                        <li><input class="button-login" type="submit" th:value="#{login.button}"></li>
                     </ul>
                 </fieldset>
             </form>
         </div>
     </div>
-    <input type="button" value="Register" onclick="{window.location='/registration'}"/>
+    <input type="button" th:value="#{register}" onclick="{window.location='/registration'}"/>
     <div class="flat-design-form errors">
         <span th:text="${error}"></span>
     </div>
