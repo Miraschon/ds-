@@ -63,7 +63,6 @@ public class LoginController {
 
 	private ResourceBundle getBundle() {
 		log.info(LocaleContextHolder.getLocale().getLanguage());
-		ResourceBundle bundle = ResourceBundle.getBundle("messages", LocaleContextHolder.getLocale());
-		return bundle;
+		return ResourceBundle.getBundle("messages", LocaleContextHolder.getLocale());
 	}
 }
