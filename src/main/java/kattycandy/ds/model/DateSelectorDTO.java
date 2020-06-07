@@ -1,8 +1,5 @@
 package kattycandy.ds.model;
 
-/**
- * @author Oleg Z. (cornknight@gmail.com)
- */
 public class DateSelectorDTO {
 	private final Integer textId;
 	private final String date;

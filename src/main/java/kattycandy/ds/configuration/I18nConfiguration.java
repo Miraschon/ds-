@@ -12,9 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
-/**
- * @author Oleg Z. (cornknight@gmail.com)
- */
+
 @Configuration
 public class I18nConfiguration implements WebMvcConfigurer {
 

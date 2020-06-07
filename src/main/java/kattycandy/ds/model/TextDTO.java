@@ -1,10 +1,5 @@
 package kattycandy.ds.model;
 
-import java.time.Instant;
-
-/**
- * @author Oleg Z. (cornknight@gmail.com)
- */
 public class TextDTO {
 	private int id;
 	private String text;

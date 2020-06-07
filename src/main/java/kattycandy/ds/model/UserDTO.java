@@ -1,8 +1,5 @@
 package kattycandy.ds.model;
 
-/**
- * @author Oleg Z. (cornknight@gmail.com)
- */
 public class UserDTO {
 	private String username;
 	private String password;
