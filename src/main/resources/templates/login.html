@@ -1,17 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}" th:lang="${lang}">
 <head>
     <meta charset="utf-8">
-    <title>Login</title>
-    <link href="/css/style.css" media="screen" rel="stylesheet">
-    <link href="../static/css/style.css"
-          th:href="@{/css/style.css}" rel="stylesheet" media="screen"/>
+    <title th:text="#{login}"></title>
+    <link th:href="@{/css/style.css}" rel="stylesheet" media="screen"/>
 </head>
 
 <div class="container">
     <div class="flat-design-form">
+        <select name="language" id="langSelector" onchange="window.location='login?lang='+this.value">
+            <option value="EN" th:selected="${#locale.language}=='en'">EN</option>
+            <option value="RU" th:selected="${#locale.language}=='ru'">RU</option>
+        </select>
         <div class="form-display show" id="login">
-            <h1>Login</h1>
+            <h1 th:text="#{login}"></h1>
             <form th:action="@{/login/check}" th:object="${loginForm}" method="POST">
                 <fieldset>
                     <ul>

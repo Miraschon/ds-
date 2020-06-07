@@ -1,4 +1,4 @@
-package kattycandy.ds.security;
+package kattycandy.ds.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,7 +14,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf()
 		    .disable()
 		    .authorizeRequests()
-		    .antMatchers("/registration/**", "/login/**", "/css/**", "/img/**").permitAll()
+		    .antMatchers("/language", "/registration/**", "/login/**", "/css/**", "/img/**").permitAll()
 		    .antMatchers("/index").hasAnyRole("USER")
 		    .anyRequest()
 		    .authenticated()
