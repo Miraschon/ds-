@@ -14,25 +14,34 @@
           th:href="@{css/my.css}" rel="stylesheet" media="screen"/>
 </head>
 <body>
+<select name="language" id="langSelector" onchange="window.location='/?lang='+this.value">
+    <option value="EN" th:selected="${#locale.language}=='en'">EN</option>
+    <option value="RU" th:selected="${#locale.language}=='ru'">RU</option>
+</select>
+<input type="button" value="Logout" onclick="{window.location='/logout'}"/>
 <div id="subtitle">
     <p>Track the word usage in your text</p>
+</div>
+<div id="hat-container">
+    <img id="hat-image" src="/img/hat.png" alt="Online word counting tool, Hat">
 </div>
 
 
 <div id="main-column">
 
     <form th:action="@{/analyseText}" th:object="${textForm}" method="POST">
-        <label for="text">Text:</label>
-        <textarea id="text" placeholder="Paste text here." cols="50" rows="10" th:field="*{text}"></textarea>
-        <input type="submit" name="action" value="Analyse"/>
-        <input type="submit" name="action" value="Save"/>
+        <div style="float: right; margin-right: 700px">
+            <label for="text">Text:</label>
+            <textarea id="text" placeholder="Paste text here." cols="50" rows="10" th:field="*{text}"></textarea>
+        </div>
+        <div style="float: left; width:50px;margin-top:50px; margin-left: 540px">
+            <input type="submit" name="action" value="Analyse"/>
+            <input type="submit" name="action" value="Save"/>
+        </div>
     </form>
 
-    <input type="button" value="Logout" onclick="{window.location='/logout'}"/>
-
-    <form th:action="@{/selectDate}" method="POST">
-        <div class="form-group">
-            <label for="datesSelector">Choose date:</label>
+    <div class="form-group" style="float: left; width:50px; margin-left: 540px" >
+        <form th:action="@{/selectDate}" method="POST">
             <select name="dateSelector" id="datesSelector" onchange="this.form.submit()">
                 <option th:each="selectorDTO : ${dateSelector}"
                         th:value="${selectorDTO.getTextId()}"
@@ -40,10 +49,10 @@
                         th:text="${selectorDTO.getDate()}">
                 </option>
             </select>
-        </div>
-    </form>
+        </form>
+    </div>
 
-    <div id="stats-container">
+    <div id="stats-container" style="clear: both">
         <div class="sentence-count main-stat"><span style='font-size:170%;font-weight:bold' th:text="${sentences}">0</span></div>
         <div class="main-stat-text"><h1>sentences</h1></div>
         <div id="minor-stats-container">

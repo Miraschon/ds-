@@ -9,9 +9,13 @@
 </head>
 
 <div class="container">
+    <select name="language" id="langSelector" onchange="window.location='/registration?lang='+this.value">
+        <option value="EN" th:selected="${#locale.language}=='en'">EN</option>
+        <option value="RU" th:selected="${#locale.language}=='ru'">RU</option>
+    </select>
     <div class="flat-design-form">
         <div class="form-display hide" id="register">
-            <h1>Register</h1>
+            <h1 th:text="#{register}"></h1>
             <form th:action="@{/registration/signup}" th:object="${registerForm}"  method="post" novalidate="">
                 <fieldset>
                     <ul>

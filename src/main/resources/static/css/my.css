@@ -52,7 +52,8 @@ td {
 #subtitle {
     text-align: center;
     color: rgb(238,232,170);
-    font-weight:bold;
+    font-family: Georgia, serif;
+    font-size: 300%;
     text-shadow: 2px 2px 2px #000;
 }
 
@@ -64,6 +65,35 @@ td {
 
 #page{
     box-shadow: 3px 3px 5px black;
+}
+
+#text {
+    width: 762px;
+    height: 387px;
+    font-size: 24px;
+    color: #333333;
+    font-family: 'Gentium Book Basic', serif;
+    padding-left: 19px;
+    padding-right: 19px;
+    padding-top: 15px;
+    padding-bottom: 0;
+    margin-top: 23px;
+    background-image: url('/img/page-line.png');
+    background-position: 0 14px;
+}
+
+#hat-container {
+    position: absolute;
+    width: 57px;
+    height: 49px;
+    margin-left: -381px;
+    left: 50%;
+    top: 43px;
+    transform: rotate(13deg);
+    -ms-transform: rotate(13deg);
+    -moz-transform: rotate(13deg);
+    -webkit-transform: rotate(13deg);
+    -o-transform: rotate(13deg);
 }
 
 .vertical-center {
