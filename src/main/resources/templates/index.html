@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:with="lang=${#locale.language}" th:lang="${lang}">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -14,10 +14,12 @@
           th:href="@{css/my.css}" rel="stylesheet" media="screen"/>
 </head>
 <body>
+<div id="lang-selector">
 <select name="language" id="langSelector" onchange="window.location='/?lang='+this.value">
     <option value="EN" th:selected="${#locale.language}=='en'">EN</option>
     <option value="RU" th:selected="${#locale.language}=='ru'">RU</option>
 </select>
+</div>
 <input type="button" value="Logout" onclick="{window.location='/logout'}"/>
 <div id="subtitle">
     <p>Track the word usage in your text</p>
@@ -30,17 +32,17 @@
 <div id="main-column">
 
     <form th:action="@{/analyseText}" th:object="${textForm}" method="POST">
-        <div style="float: right; margin-right: 700px">
+        <div>
             <label for="text">Text:</label>
             <textarea id="text" placeholder="Paste text here." cols="50" rows="10" th:field="*{text}"></textarea>
         </div>
-        <div style="float: left; width:50px;margin-top:50px; margin-left: 540px">
+        <div>
             <input type="submit" name="action" value="Analyse"/>
             <input type="submit" name="action" value="Save"/>
         </div>
     </form>
 
-    <div class="form-group" style="float: left; width:50px; margin-left: 540px" >
+    <div id="date-container" class="form-group" style="float: left; width:50px;" >
         <form th:action="@{/selectDate}" method="POST">
             <select name="dateSelector" id="datesSelector" onchange="this.form.submit()">
                 <option th:each="selectorDTO : ${dateSelector}"
@@ -53,83 +55,81 @@
     </div>
 
     <div id="stats-container" style="clear: both">
-        <div class="sentence-count main-stat"><span style='font-size:170%;font-weight:bold' th:text="${sentences}">0</span></div>
-        <div class="main-stat-text"><h1>sentences</h1></div>
-        <div id="minor-stats-container">
+        <div class="sentence-count main-stat"><span th:text="${sentences}">0</span>
+
+        </div>
+        <div class="main-stat-text"><span th:text="#{sentences}"></span></div>
+        <div>
             <table>
 
                 <tr>
                     <td>
-                        <div class="minor-stat"><span class="avg-words-per-sentence-count" th:text="${wordsPerSentence}">0</span> words per sentence</div>
+                        <div class="minor-stat"><span class="avg-words-per-sentence-count" th:text="${wordsPerSentence}">0</span>
+                            <span th:text="#{wordsPerSentence}"></span>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div class="minor-stat"><span class="paragraph-count" th:text="${paragraphs}">0</span> paragraphs</div>
+                        <div class="minor-stat"><span class="paragraph-count" th:text="${paragraphs}">0</span>
+                            <span th:text="#{paragraphs}"></span>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div class="minor-stat"><span class="paragraph-word-count" th:text="${wordsPerParagraph}">0</span> words per paragraph</div>
+                        <div class="minor-stat"><span class="paragraph-word-count" th:text="${wordsPerParagraph}">0</span>
+                            <span th:text="#{wordsPerParagraph}"></span></div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div class="minor-stat"><span class="letters-per-sentence" th:text="${lettersPerSentence}">0</span> letters per sentence</div>
+                        <div class="minor-stat"><span class="letters-per-sentence" th:text="${lettersPerSentence}">0</span>
+                            <span th:text="#{lettersPerSentence}"></span></div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div class="minor-stat"><span class="alpha-count" th:text="${letters}">0</span> letters, total</div>
+                        <div class="minor-stat"><span class="alpha-count" th:text="${letters}">0</span>
+                            <span th:text="#{lettersTotal}"></span></div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div class="minor-stat"><span class="word-count" th:text="${words}">0</span> words, total</div>
+                        <div class="minor-stat"><span class="word-count" th:text="${words}">0</span>
+                            <span th:text="#{wordsTotal}"></span>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div class="minor-stat"><span class="max-words-per-sentence-count" th:text="${maxSentenceLen}">0</span> max sentence length (words)</div>
+                        <div class="minor-stat"><span class="max-words-per-sentence-count" th:text="${maxSentenceLen}">0</span>
+                            <span th:text="#{maxSentenceLen}"></span> </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div class="minor-stat"><span class="min-words-per-sentence-count" th:text="${minSentenceLen}">0</span> min sentence length (words)</div>
+                        <div class="minor-stat"><span class="min-words-per-sentence-count" th:text="${minSentenceLen}">0</span>
+                            <span th:text="#{minSentenceLen}"></span></div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div class="minor-stat"><span class="question-count" th:text="${questions}">0</span> questions</div>
+                        <div class="minor-stat"><span class="question-count" th:text="${questions}">0</span>
+                            <span th:text="#{questions}"></span></div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div class="minor-stat"><span class="unique-word-count" th:text="${uniqueWords}">0</span> unique words</div>
+                        <div class="minor-stat"><span class="unique-word-count" th:text="${uniqueWords}">0</span>
+                            <span th:text="#{uniqueWords}"></span></div>
                     </td>
                 </tr>
             </table>
-        </div>
-
-        <div class="word-frequency-container">
-            <p class="title">Most used words:</p>
-            <table>
-
-            </table>
-            <p class="more-freq-word-button">+ More words...</p>
-        </div>
-
-        <div class="personal-pronouns">
-            <p><span class="first"><span style='font-size:170%;font-weight:bold'>0</span>% First person</span>,<span class="third"><span style='font-size:170%;font-weight:bold'>0</span>% Third person</span>
-            </p>
         </div>
 
     </div>
 
-    <!--<div id="under-footer">
-        <h1 class="title">Hi!</h1>
-        <p class="body"></p>
-    </div>-->
 
     <div id="text-width-tester">
     </div>
