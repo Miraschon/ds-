@@ -18,6 +18,7 @@
 <select name="language" id="langSelector" onchange="window.location='/?lang='+this.value">
     <option value="EN" th:selected="${#locale.language}=='en'">EN</option>
     <option value="RU" th:selected="${#locale.language}=='ru'">RU</option>
+    <option value="KZ" th:selected="${#locale.language}=='kz'">KZ</option>
 </select>
 </div>
 <input type="button" value="Logout" onclick="{window.location='/logout'}"/>
