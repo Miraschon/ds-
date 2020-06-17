@@ -38,8 +38,8 @@
             <textarea id="text" placeholder="Paste text here." cols="50" rows="10" th:field="*{text}"></textarea>
         </div>
         <div>
-            <input type="submit" name="action" value="Analyse"/>
-            <input type="submit" name="action" value="Save"/>
+            <input type="submit" name="action" th:value="#{analyse}"/>
+            <input type="submit" name="action" th:value="#{save}"/>
         </div>
     </form>
 
